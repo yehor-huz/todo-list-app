@@ -15,6 +15,12 @@ app.get("/", (req, res) => {
 
 // Запуск сервера
 const PORT = process.env.PORT || 5000;
+
+const errorHandler = require("./middleware/errorHandler");
+
+app.use(errorHandler);
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
@@ -22,3 +28,5 @@ app.listen(PORT, () => {
 const tasksRouter = require("./routes/tasks");
 app.use("/tasks", tasksRouter);
 
+const taskRoutes = require("./routes/taskRoutes");
+app.use("/tasks", taskRoutes);
